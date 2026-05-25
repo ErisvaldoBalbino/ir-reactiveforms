@@ -1,0 +1,40 @@
+:host {
+	display: block;
+}
+
+form {
+	display: grid;
+	gap: 0.5rem;
+	width: min(100%, 420px);
+}
+
+[formArrayName='experiencias'] {
+	display: grid;
+	gap: 0.5rem;
+}
+
+[formGroupName] {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 0.35rem;
+	padding: 0.6rem;
+	border: 1px solid #d0d7de;
+	border-radius: 6px;
+	background: #f8fafc;
+}
+
+[formGroupName] input {
+	flex: 1 1 140px;
+	min-width: 140px;
+	box-sizing: border-box;
+	padding: 0.45rem 0.6rem;
+	border: 1px solid #cbd5e1;
+	border-radius: 5px;
+}
+
+button {
+	width: fit-content;
+	padding: 0.45rem 0.7rem;
+}
+

@@ -1,0 +1,103 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="nome">Nome:</label>
+        <input id="nome" formControlName="nome" placeholder="Digite seu nome" />
+        @if(form.get('nome')?.invalid && form.get('nome')?.touched) {
+            @if(form.get('nome')?.errors?.['required']) {
+                <span>O nome é obrigatório.</span>
+            }
+
+            @if(form.get('nome')?.errors?.['minlength']) {
+                <span>O nome deve conter no mínimo 5 caracteres.</span>
+            }
+
+            @if(form.get('nome')?.errors?.['maxlength']) {
+                <span>O nome deve conter no máximo 100 caracteres.</span>
+            }
+        }
+    </div>
+
+    <div>
+        <label for="cpf">CPF:</label>
+        <input id="cpf" formControlName="cpf" placeholder="Digite seu CPF" />
+        @if(form.get('cpf')?.invalid && form.get('cpf')?.touched) {
+            @if(form.get('cpf')?.errors?.['required']) {
+                <span>O CPF é obrigatório.</span>
+            }
+
+            @if(form.get('cpf')?.errors?.['cpfInvalido']) {
+                <span>O CPF é inválido.</span>
+            }
+        }
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" placeholder="Digite seu email" />
+        @if(form.get('email')?.invalid && form.get('email')?.touched) {
+            @if(form.get('email')?.errors?.['required']) {
+                <span>O email é obrigatório.</span>
+            }
+
+            @if(form.get('email')?.errors?.['email']) {
+                <span>O email deve ser válido.</span>
+            }
+        }
+    </div>
+
+    <div>
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input id="dataNascimento" formControlName="dataNascimento" type="date" placeholder="Digite sua data de nascimento" />
+            @if(form.get('dataNascimento')?.invalid && form.get('dataNascimento')?.touched) {
+                @if(form.get('dataNascimento')?.errors?.['required']) {
+                    <span>A data de nascimento é obrigatória.</span>
+                }
+            }
+    </div>
+
+    <div>
+        <label for="senha">Senha:</label>
+        <input id="senha" type="password" formControlName="senha" placeholder="Digite sua senha" />
+        @if(form.get('senha')?.invalid && form.get('senha')?.touched) {
+            @if(form.get('senha')?.errors?.['required']) {
+                <span>A senha é obrigatória.</span>
+            }
+
+            @if(form.get('senha')?.errors?.['minlength']) {
+                <span>A senha deve conter no mínimo 8 caracteres.</span>
+            }
+
+            @if(form.get('senha')?.errors?.['senhaFraca']) {
+                <span>A senha deve conter pelo menos uma letra maiúscula e um número.</span>
+            }
+        }
+    </div>
+
+    <div>
+        <label for="confirmarSenha">Confirmar Senha:</label>
+        <input id="confirmarSenha" type="password" formControlName="confirmarSenha" placeholder="Confirme sua senha" />
+        @if(form.get('confirmarSenha')?.invalid && form.get('confirmarSenha')?.touched) {
+            @if(form.get('confirmarSenha')?.errors?.['required']) {
+                <span>A confirmação de senha é obrigatória.</span>
+            }
+        }
+    </div>
+
+    <div>
+        <label for="perfil">Perfil:</label>
+        <select id="perfil" formControlName="perfil"
+            multiple>
+            <option value="aluno">Aluno</option>
+            <option value="professor">Professor</option>
+            <option value="administrador">Administrador</option>
+        </select>
+    </div>
+
+    <div>
+    @if(form.errors?.['senhasDiferentes'] && form.get('confirmarSenha')?.touched) {
+        <span>As senhas devem ser iguais.</span>
+    }
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Cadastrar</button>
+</form>

@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div formArrayName="experiencias">
+        <label for="experiencias">Experiências:</label>
+        <p>Total de experiências: {{ totalExperiencias }}</p>
+        @for (exp of experiencias.controls; track $index) {
+        <div [formGroupName]="$index">
+            <input type="text" formControlName="empresa" placeholder="Empresa" />
+            <input type="text" formControlName="cargo" placeholder="Cargo" />
+            <input type="number" formControlName="anoInicio" placeholder="Ano de início" />
+            <input type="number" formControlName="anoFim" placeholder="Ano de fim" />
+            <button type="button" (click)="removerExperiencia($index)">Remover</button>
+        </div>
+        }
+    </div>
+    <button type="button" (click)="adicionarExperiencia()">Adicionar experiência</button>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
